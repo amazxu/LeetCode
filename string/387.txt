@@ -1,0 +1,23 @@
+class Solution {
+    public int firstUniqChar(String s) {
+        int i, index;
+        char ch;
+        int[] tag = new int[26];
+        if(s.length() == 1)
+            return 0;
+        for(i = 0;i < 26;i++)
+            tag[i] = 0;  
+        for(i = 0;i < s.length();i++)
+        {   
+            ch = s.charAt(i);
+            tag[ch - 97]++;
+        }
+        for(i = 0;i < s.length();i++)
+        {   
+            ch = s.charAt(i);
+            if(tag[ch - 97] == 1)
+                return i;
+        }
+        return -1;
+    }
+}
