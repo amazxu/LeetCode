@@ -1,0 +1,47 @@
+class Solution {
+    public String getHint(String secret, String guess) {
+        int a=0, b=0;
+        int i;
+        int tag;
+        int[] repeat = new int[10];
+        char ch;
+        for(i=0;i<10;i++)
+            repeat[i]=0;
+        char temp;
+        String hint;
+        for(i=0;i<secret.length();i++){
+            ch = secret.charAt(i);
+            tag =Integer.parseInt(String.valueOf(ch));
+            repeat[tag]++;
+        }
+
+        for(i=0;i<guess.length();i++){
+            ch = guess.charAt(i);
+            tag =Integer.parseInt(String.valueOf(ch));
+            if(secret.indexOf(ch)!=-1){
+            temp = secret.charAt(i);
+            if(temp == ch){
+                a++;
+                repeat[tag]--;
+            }
+            }
+        }
+        for(i=0;i<guess.length();i++){
+            ch = guess.charAt(i);
+            tag =Integer.parseInt(String.valueOf(ch));
+            if(secret.indexOf(ch)!=-1){
+            temp = secret.charAt(i);
+            if(temp != ch){
+                if(repeat[tag]>0)
+                {
+                    b++;
+                    repeat[tag]--;
+                }
+            }
+            }
+        }
+        hint = a+"A"+b+"B";
+    return hint;
+    }
+    
+}

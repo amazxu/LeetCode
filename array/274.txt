@@ -1,0 +1,28 @@
+class Solution {
+    public int hIndex(int[] citations) {
+        if(citations.length == 0)
+            return 0;
+        int i, j;
+        int tempindex = 0;
+        int tempmin;
+        for(i = 0; i < citations.length; i++)
+        {
+            tempindex = i;
+            for(j = i; j < citations.length; j++){
+                if(citations[j] > citations[tempindex])
+                    tempindex = j;
+            }
+            if(i != j){
+            tempmin = citations[tempindex];
+            citations[tempindex] = citations[i];
+            citations[i] = tempmin;
+            }
+        }
+        for(i = 0;i < citations.length; i++){
+            if(i >= citations[i])
+                break;
+        }
+    return i;
+
+    }
+}
